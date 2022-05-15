@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 Route::get('/product/{slug}', [WelcomeController::class, 'show']);
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'CheckRole:Admin', 'prefix' => 'admin'], function() {
-        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     });
     //PRODUCTS
     Route::group(['middleware' => 'CheckRole:Admin'], function() {

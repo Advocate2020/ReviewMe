@@ -15,7 +15,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        return view('reviews.index');
     }
 
     /**
@@ -96,6 +96,8 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Review::where('id',$id)->delete();
+        session()->flash('message','Review deleted successfully.');
+        return back();
     }
 }

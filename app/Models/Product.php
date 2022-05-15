@@ -14,6 +14,11 @@ class Product extends Model
         return $this->belongsTo(ProductType::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeSearch($query, $val)
     {
         return $query->where('name', 'like', '%'.$val.'%');

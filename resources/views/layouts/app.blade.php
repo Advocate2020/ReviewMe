@@ -21,6 +21,11 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="{{ asset('css/review.css') }}" rel="stylesheet">
+    <style>
+        .act{
+            color: mediumpurple;
+        }
+    </style>
     @livewireStyles
 </head>
 <body>
@@ -39,7 +44,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="{{Request::routeIs('welcome.index') ? 'act' : 'nav-link'}}" href="{{route('welcome.index')}}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About Us</a>
@@ -92,10 +97,16 @@
     </nav>
     <main>
         @yield('content')
+        <footer class="main-footer" style="color: white">
+            <div>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+            </div>
+            <small>&copy 2022 ReviewMe</small>
+        </footer>
     </main>
-    <div class="footer" style="width:100%">
-{{--        @include('layouts.footer')--}}
-    </div>
+
 </div>
 @livewireScripts
 <script src="{{ asset('js/app.js') }}"></script>

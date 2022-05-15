@@ -14,7 +14,7 @@
                 <img src="/storage/{{$product->image}}" alt="" />
             </div>
             <h1>Reviews And ratings</h1>
-            <div class="row pt-5">
+            <div class="about-text pt-4">
                 @foreach($reviews as $review)
                     <div class="col-8 pb-4">
                         <h3>{{$review->user->name}} {{$review->user->surname}}</h3>
@@ -30,6 +30,20 @@
 
                         </p>
                         <p>{{$review->comment}}</p>
+                        @auth
+                            @if(auth()->user()->id == $review->user_id)
+                                <form action="/reviews/{{$review->id}}" onsubmit="return confirm('Are you sure you want to delete?');" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    @csrf
+                                    <span style="float: right">
+                                        <button type="submit" class="btn btn-danger btn-sm px-2" >
+                                            DELETE
+                                        </button>
+                                    </span>
+                                </form>
+                            @endif
+                        @endauth
+                        <hr>
                     </div>
                 @endforeach
             </div>

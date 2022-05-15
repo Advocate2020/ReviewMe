@@ -36,7 +36,7 @@
         <ul>
             <li><a class="active" href="admin">Home</a></li>
             <li><a href="/products">Products</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="/reviews">Product Reviews</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
@@ -94,7 +94,7 @@
             </div>
         </div>
     </nav>
-    <main id="main" style="background-color: #1a1e21;height: 100%">
+    <main id="main" style="background-color: #1a1e21;">
         <div>
             @if(session()->has('message'))
                 <div class="alert alert-success">
