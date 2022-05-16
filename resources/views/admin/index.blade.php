@@ -22,7 +22,7 @@
                         <h3>52</h3>
                     </div>
                     <div class="w3-clear"></div>
-                    <h4>Test Requests</h4>
+                    <h4>Total Products</h4>
                 </div>
             </div>
             <div class="w3-quarter">
@@ -32,7 +32,7 @@
                         <h3>99</h3>
                     </div>
                     <div class="w3-clear"></div>
-                    <h4>Closed Tests</h4>
+                    <h4>Total Reviews</h4>
                 </div>
             </div>
             <div class="w3-quarter">
@@ -42,7 +42,7 @@
                         <h3>23</h3>
                     </div>
                     <div class="w3-clear"></div>
-                    <h4>Patients</h4>
+                    <h4>Companies</h4>
                 </div>
             </div>
             <div class="w3-quarter">

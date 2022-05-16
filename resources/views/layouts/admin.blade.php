@@ -94,7 +94,7 @@
             </div>
         </div>
     </nav>
-    <main id="main" style="background-color: #1a1e21;">
+    <main id="main" style="background-color: #1a1e21;min-height: 100vh;margin: 0;">
         <div>
             @if(session()->has('message'))
                 <div class="alert alert-success">
