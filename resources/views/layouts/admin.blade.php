@@ -34,10 +34,11 @@
 
         <hr>
         <ul>
-            <li><a class="active" href="admin">Home</a></li>
+            <li><a  href="admin">Home</a></li>
             <li><a href="/products">Products</a></li>
             <li><a href="/reviews">Product Reviews</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/companies">Companies</a></li>
+            <li><a href="/companyreviews">Company Reviews</a></li>
         </ul>
     </div>
     <nav id="top" class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: whitesmoke">
@@ -94,7 +95,7 @@
             </div>
         </div>
     </nav>
-    <main id="main" style="background-color: #1a1e21;min-height: 100vh;margin: 0;">
+    <main id="main" style="background-color: #1a1e21;min-height: 100vh;">
         <div>
             @if(session()->has('message'))
                 <div class="alert alert-success">

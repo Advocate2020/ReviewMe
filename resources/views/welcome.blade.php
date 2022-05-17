@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        #buttons li {
-            background-color: mediumpurple
-        }
-
-    </style>
     <header class="header">
         <div class="header-text">
             <h1>ReviewMe</h1>
@@ -19,13 +13,8 @@
     <div style="padding-top: 25px">
         <main class="container">
             <h2 class="header-title">Latest Products</h2>
-            <div class="categories">
-                <ul id="buttons">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Business</a></li>
-                </ul>
-            </div>
-            <div class="row pt-5">
+
+            <div class="row pt-5" style="color: white;">
                 @foreach($products as $product)
                     <div class="col-4 pb-4">
                         <a href="/product/{{$product->slug}}">
@@ -35,7 +24,7 @@
                             {{$product->created_at->diffForHumans()}}
 
                         </p>
-                        <h4  style="font-weight: bolder;color: mediumpurple">
+                        <h4>
                             {{$product->name}}
                         </h4>
                     </div>

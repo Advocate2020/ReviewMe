@@ -1,25 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 pt-5">
+                <img src="{{ $company->profileImage() }}" class="rounded-circle w-50 h-50">
+            </div>
+            <div class="col-3 pt-5">
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="d-flex align-items-center pb-3">
+                        <div class="h4" style="color: #ffd79d">{{ $company->name }}</div>
+                    </div>
+                </div>
+
+                <div><a href="#">{{ $company->url }}</a></div>
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            @foreach($company->product as $product)
+                <div class="col-4 pb-4">
+                    <a href="/product/{{$product->slug}}">
+                        <img src="/storage/{{ $product->image }}" class="w-100">
+                    </a>
+                    <p>
+                        {{$product->created_at->diffForHumans()}}
+
+                    </p>
+                    <h4 style="color: #ffd79d">
+                        {{$product->name}}
+                    </h4>
+                </div>
+            @endforeach
+        </div>
         <section class="single-blog-post" style="color:white">
-            <h1>{{$product->name}}</h1>
-
-
-            <p class="time-and-author">
-            <div class="col-3">
-                <a href="/company/{{ $product->company->slug }}">
-                    <img src="{{ $product->company->profileImage() }}" class="rounded-circle w-25 h-25"> {{$product->company->name}}
-                </a>
-            </div>
-                <span style="float: right">{{$product->created_at->diffForHumans()}}</span>
-            </p>
-
-            <div class="single-blog-post-ContentImage" data-aos="fade-left">
-                <img src="/storage/{{$product->image}}" alt="" />
-            </div>
             <h1>Reviews And ratings</h1>
-            <div class="about-text pt-4">
+            <div class="about-text pt-2">
                 @foreach($reviews as $review)
                     <div class="col-8 pb-4">
                         <h3>{{$review->user->name}} {{$review->user->surname}}</h3>
@@ -28,7 +44,7 @@
                         <div class="rated-box">
                             @for($i =0; $i < $review->rate;$i++ )
                                 <i class="star selected fa fa-star" style="color: yellow"></i>
-                                @endfor
+                            @endfor
                             <span style="padding-left: 5px">{{$review->created_at->diffForHumans()}}</span>
                         </div>
 
@@ -37,7 +53,7 @@
                         <p>{{$review->comment}}</p>
                         @auth
                             @if(auth()->user()->id == $review->user_id)
-                                <form action="/reviews/{{$review->id}}" onsubmit="return confirm('Are you sure you want to delete?');" method="POST">
+                                <form action="/companyreviews/{{$review->id}}" onsubmit="return confirm('Are you sure you want to delete?');" method="POST">
                                     <input type="hidden" name="_method" value="DELETE">
                                     @csrf
                                     <span style="float: right">
@@ -55,9 +71,9 @@
 
             <div class="wrapper">
                 <div class="master">
-                        <h2>How was your experience about our product?</h2>
-                        @if(Auth::user())
-                        <form name="frm" method="POST" action="/reviews">
+                    <h2>How was your experience with our company?</h2>
+                    @if(Auth::user())
+                        <form name="frm" method="POST" action="/companyreviews">
                             @csrf
                             <div class="rating-component">
                                 <div class="status-msg">
@@ -116,7 +132,7 @@
                                 <div class="tags-box">
 
                                     <textarea name="comment" class="tag form-control" id="inlineFormInputName" cols="50" rows="2" placeholder="please enter your review"></textarea>
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                    <input type="hidden" name="company_id" value="{{ $company->id }}" />
                                 </div>
 
                             </div>
@@ -134,11 +150,12 @@
                         </form>
                     @else
                         <h4>Login/Register to add a review</h4>
-                        @endif
-                    </div>
+                    @endif
+                </div>
             </div>
         </section>
-    </main>
+
+    </div>
 @endsection
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

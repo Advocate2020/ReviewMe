@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -17,15 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link href="{{ asset('css/review.css') }}" rel="stylesheet">
-    <style>
-        .act{
-            color: mediumpurple;
-        }
-    </style>
+    <link href="{{ asset('css/review.css') }}" type="text/css" rel="stylesheet">
     @livewireStyles
 </head>
 <body>
@@ -44,7 +39,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="{{Request::routeIs('welcome.index') ? 'act' : 'nav-link'}}" href="{{route('welcome.index')}}">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About Us</a>

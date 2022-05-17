@@ -1,5 +1,6 @@
-﻿.register{
-    background: -webkit-linear-gradient(left, mediumpurple, black);
+﻿@charset "UTF-8";
+.register{
+    background: -webkit-linear-gradient(left, #d902ee, #f162ff);
     margin-top: 3%;
     padding: 3%;
 }

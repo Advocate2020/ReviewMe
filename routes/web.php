@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
@@ -18,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
-Route::get('/product/{slug}', [WelcomeController::class, 'show']);
+Route::get('/product/{slug}', [WelcomeController::class, 'showproduct']);
+Route::get('/company/{slug}', [WelcomeController::class, 'showcompany']);
 
 Auth::routes();
 
@@ -37,6 +40,14 @@ Route::group(['middleware' => 'auth'], function() {
     //Reviews
     Route::group(['middleware' => 'CheckRole:Customer'], function() {
         Route::resource('reviews', ReviewController::class);
+    });
+    //COMPANIES
+    Route::group(['middleware' => 'CheckRole:Admin'], function() {
+        Route::resource('companies', CompanyController::class);
+    });
+    //COMPANYREVIEWS
+    Route::group(['middleware' => 'CheckRole:Customer'], function() {
+        Route::resource('companyreviews', CompanyReviewController::class);
     });
 });
 
