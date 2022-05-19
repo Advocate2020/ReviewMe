@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Company;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index')->with('types', ProductType::orderBy('name', 'asc')->get());
+        return view('products.index')->with('types', ProductType::orderBy('name', 'asc')->get())->with('companies', Company::orderBy('name', 'asc')->get());
     }
 
     /**
@@ -41,7 +42,8 @@ class ProductController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'image' => ['required', 'image'],
-            'type_id' => 'required'
+            'type_id' => 'required',
+            'company_id' => 'required'
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
@@ -52,6 +54,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = request('name');
         $product->type_id = request('type_id');
+        $product->company_id = request('company_id');
         $product->image = $imagePath;
         $product->status = 'Active';
         $product->slug = Str::slug(request('name'), '-');
@@ -59,7 +62,7 @@ class ProductController extends Controller
 
         session()->flash('message','Product created successfully.');
 
-        return redirect()->to('/products')->with('types', ProductType::orderBy('name', 'asc')->get());
+        return redirect()->to('/products')->with('types', ProductType::orderBy('name', 'asc')->get())->with('companies', Company::orderBy('name', 'asc')->get());
     }
 
     /**

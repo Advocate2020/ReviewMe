@@ -40,9 +40,21 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="company_id" >Company</label>
+                            <select name="company_id" id="company_id" class="form-control">
+                                <option value="" disabled>Select company</option>
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="text-danger">
+                                <small>{{ $errors->first('company_id') }}</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="type_id" >Product Type</label>
                             <select name="type_id" id="type_id" class="form-control">
-                                <option value="" disabled>Select product</option>
+                                <option value="" disabled>Select product type</option>
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
